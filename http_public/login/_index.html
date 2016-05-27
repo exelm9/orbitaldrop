@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Orbital Drop</title>
+
+  <link rel="stylesheet" type="text/css" href="/login/styles.css">
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div id="login-button">
+    <img src="http://dqcgrsy5v35b9.cloudfront.net/cruiseplanner/assets/img/icons/login-w-icon.png">
+    </img>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-rc1/jquery.min.js"></script>
+  <script>
+    $('#login-button').click(function(){
+      setTimeout(function(){window.location = '/login/github'}, 500)
+      $('#login-button').fadeOut(1000);
+    });
+  </script>
+</body>
+</html>

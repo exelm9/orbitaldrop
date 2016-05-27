@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8" />
+    <title>Choosely</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    
+  </head>
+  <body>
+    <h1 class="home col-md-offset-3 col-md-6 page-header" style="text-align:center;">Cuple Roulette</h1>
+    <!-- super cool makes sure jquery hasn't been modified using integrity and crossorigin attribute-->
+    <script src="http://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <!-- change all to min to speed up load-->
+    <script src="http://cdn.socket.io/socket.io-1.0.0.js"></script>
+    <input id="file" type="file" />
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var users = null;
+        $("input:file").change(function (){
+            console.log($('#file')[0].files[0])
+               var formData = new FormData();
+               var file = $('#file')[0].files[0];
+               formData.append('file', file);
+               var userId = null;
+               for(var key in users){
+                    userId = users[key].userId;
+                    break;
+               }
+               formData.append("recieverUserId",userId);
+               formData.append("filename",file.name);
+
+               $.ajax({
+                      url : '/files/upload',
+                      type : 'POST',
+                      data : formData,
+                      processData: false,  // tell jQuery not to process the data
+                      contentType: false,  // tell jQuery not to set contentType
+                      success : function(data) {
+                          console.log(data);
+                      }
+               });
+             });
+
+        var socket = io();
+        
+        // resopnse - object
+        $.get('/api/user_profiles',function(response){
+            var userId = response.userId
+            socket.emit('createUser', userId)
+        })
+        // users - object
+        socket.on('updateUsers', function(usersData){
+            // Users state here
+            users = usersData
+
+        });
+        // response - object
+        socket.on('requestTransfer',function(response){
+            var senderUserId = response.senderUserId
+            var filename = response.filename
+            /*** user will choose accept or reject.  
+            1. A decision will be emitted
+            2. Accept will cause a forced get request. Reject will send a delete 
+               request for file.
+            ***/
+            // temporarily true, let user decide
+            var choice = true;
+            if(choice){
+                window.open('/files/download');
+            }else{
+                $.ajax({
+                    url: '/',
+                    type: 'DELETE',
+                    success: function(result) {
+                        console.log(result, 'should be result of deletion')
+                    }
+                });
+            }
+            
+            
+            socket.emit('transferChoice',{
+                            senderUserId:senderUserId,
+                            choice:choice
+                        })
+
+        })
+        // decision - boolean
+        socket.on('transferDecision', function(decision){
+            // update user on what other user decided
+
+        })
+        // gets send to specific user wanting to recieve download
+        socket.on('testDownload', function(filename, uniqueId){
+            
+            window.open('/download');
+
+        });
+        $('.home').click(function(e){location.reload();})
+        
+    })
+    
+    </script>
+
+  </body>
+</html>

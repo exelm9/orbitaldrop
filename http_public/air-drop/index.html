@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="AirDrop">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    
+    <title>AirDrop | For Everyone! </title>
+    
+    <link rel="stylesheet" type="text/css" href="/resources/console/assets/css/resets/reset.css">
+    <link rel="stylesheet" type="text/css" href="/resources/console/assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/console/assets/css/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="/resources/console/assets/css/sonar/css/sonar.css">
+    <link rel="stylesheet" type="text/css" href="/resources/console/assets/css/console.css">
+    
+    <style type="text/css">
+
+      body{
+        min-width:500px; // suppose you want minimun width of 500px
+        _width: expression( document.body.clientWidth > 500 ? "500px" : "auto" ); /* sets max-width for IE */
+      }
+
+      .pending {
+        position: absolute;
+        top: 57px;
+        left: 44px;
+      }
+
+      #nodes {
+        height: 70vh;
+        overflow: scroll;
+        padding-bottom: 200px;
+        padding-top: 290px;
+      }
+
+      .user-node.client {
+        bottom: 130px!important;
+        position: absolute;
+        left: 50%;
+        margin-left: -75px;
+      }
+
+      .client-controls .container {
+        float: none;
+        width: 100%;
+        bottom: 57px;
+        position: absolute;
+        margin: 0px;
+      }
+
+      .package:nth-child(13) { animation-delay: 9.35s!important; }
+      .package:nth-child(12) { animation-delay: 8.7s!important; }
+      .package:nth-child(11) { animation-delay: 7.9s!important; }
+      .package:nth-child(10) { animation-delay: 7.1s!important; }
+      .package:nth-child(9) { animation-delay: 6.3s!important; }
+      .package:nth-child(8) { animation-delay: 5.5s!important; }
+      .package:nth-child(7) { animation-delay: 4.7s!important; }
+      .package:nth-child(6) { animation-delay: 3.9s!important; }
+      .package:nth-child(5) { animation-delay: 3.1s!important; }
+      .package:nth-child(4) { animation-delay: 2.3s!important; }
+      .package:nth-child(3) { animation-delay: 1.5s!important; }
+      .package:nth-child(2) { animation-delay: 700ms!important; }
+
+      user-node {
+        margin: 10%;
+        float: left;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div ng-view></div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/resources/console/assets/js/dropzone/dropzone.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+
+    <script src="app/modules/console/console.js"></script>
+
+    <script src="app/air-drop.js"></script>
+
+    <!-- AirDrop Directives -->
+    <script src="app/directives/menu-button.js"></script>
+    <script src="app/directives/client-user.js"></script>
+    <script src="app/directives/inbound-packages.js"></script>
+    <script src="app/directives/connected-users.js"></script>
+    <script src="app/directives/user-node.js"></script>
+
+    <script>
+
+      $(document).ready(function(){
+
+        // Styling for Nodes list scrolling
+        var nodesMap = $(document);
+
+            nodesMap.on("scroll", function(e) {
+              var pos = window.pageYOffset || document.documentElement.scrollTop;
+              
+              if (pos < 80) {  
+                $('.client-controls').addClass("scrolling");
+              } else {
+                $('.client-controls').removeClass("scrolling");
+              }
+      
+            });
+
+        
+        $(".nodes").animate({ scrollTop: $(document).height() }, "slow");
+
+      });
+
+    </script>
+  </body>
+  
+</html>

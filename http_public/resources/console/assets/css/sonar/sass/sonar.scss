@@ -1,0 +1,205 @@
+/// ------------------------------------------------------------------------------------- ///
+///                             ┌─┐┌─┐┌┐┌┌─┐┬─┐ ┌─┐┌─┐┌─┐                                 ///
+///                             └─┐│ ││││├─┤├┬┘ │  └─┐└─┐                                 ///
+///                             └─┘└─┘┘└┘┴ ┴┴└─o└─┘└─┘└─┘                                 ///
+///                        Pure CSS animated attention seekers                            ///
+///                                                                                       ///
+///                             urbanoalvarez.es/sonar.css                                ///
+///                                                                                       ///
+/// ------------------------------------------------------------------------------------- ///
+/// Imports
+@import 'sonar/_variables';
+@import 'sonar/_animations';
+///
+/// Sonar code
+.sonar {
+  position: relative;
+  &:after {
+    z-index: -1;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    display: block;
+    position: absolute;
+
+    // Animate by default
+    animation-name: sonar-base;
+    animation-iteration-count: $iteration-count-base;
+    animation-duration: $duration-base;
+    box-sizing: content-box;
+  }
+  &.sonar-infinite {
+    &:after {
+      animation-iteration-count: infinite;
+    }
+  }
+  &.sonar-delay {
+    &:after {
+      animation-delay: $time-base;
+    }
+  }
+  &.sonar-delay-long {
+    &:after {
+      animation-delay: $time-slow;
+    }
+  }
+  &.sonar-delay-longer {
+    &:after {
+      animation-delay: $time-slower;
+    }
+  }
+  &.sonar-delay-short {
+    &:after {
+      animation-delay: $time-fast;
+    }
+  }
+  &.sonar-delay-shorter {
+    &:after {
+      animation-delay: $time-faster;
+    }
+  }
+  &.sonar-slow{
+    &:after{
+      animation-duration: $time-slow;
+    }
+  }
+  &.sonar-slower{
+    &:after{
+      animation-duration: $time-slower;
+    }
+  }
+  &.sonar-fast{
+    &:after{
+      animation-duration: $time-fast;
+    }
+  }
+  &.sonar-faster{
+    &:after{
+      animation-duration: $time-faster;
+    }
+  }
+  &.sonar-stroke {
+    &:after {
+      border-width: 0;
+      border-color: inherit;
+      border-style: solid;
+      border-radius: inherit;
+
+      // Animate by default
+      animation-name: sonar-base, sonar-stroke;
+    }
+    &.sonar-hover {
+      &:after {
+        animation-name: none;
+      }
+      &.sonar-default {
+        &:after {
+          border-color: $gray;
+        }
+      }
+      &.sonar-primary {
+        &:after {
+          border-color: $brand-primary;
+        }
+      }
+      &.sonar-info {
+        &:after {
+          border-color: $brand-info;
+        }
+      }
+      &.sonar-success {
+        &:after {
+          border-color: $brand-success;
+        }
+      }
+      &.sonar-warning {
+        &:after {
+          border-color: $brand-warning;
+        }
+      }
+      &.sonar-danger {
+        &:after {
+          border-color: $brand-danger;
+        }
+      }
+      &:hover {
+        &:after {
+          animation-name: sonar-base, sonar-stroke;
+        }
+      }
+    }
+    &.sonar-click {
+      &:after {
+        animation-name: none;
+      }
+      &:focus {
+        &:after {
+          animation-name: sonar-base, sonar-stroke;
+        }
+      }
+    }
+  }
+  &.sonar-fill {
+    &:after {
+      border: none;
+      background: inherit;
+      border-radius: inherit;
+      animation-name: sonar-base;
+    }
+    &.sonar-default {
+      &:after {
+        background-color: $gray;
+      }
+    }
+    &.sonar-primary {
+      &:after {
+        background-color: $brand-primary;
+      }
+    }
+    &.sonar-info {
+      &:after {
+        background-color: $brand-info;
+      }
+    }
+    &.sonar-success {
+      &:after {
+        background-color: $brand-success;
+      }
+    }
+    &.sonar-warning {
+      &:after {
+        background-color: $brand-warning;
+      }
+    }
+    &.sonar-danger {
+      &:after {
+        background-color: $brand-danger;
+      }
+    }
+    &.sonar-hover {
+      &:after {
+        animation-name: none;
+      }
+      &:hover {
+        &:after {
+          animation-name: sonar-base;
+          animation-duration: $duration-base/2;
+        }
+      }
+    }
+    &.sonar-click {
+      &:after {
+        animation-name: none;
+      }
+      &:focus {
+        &:after {
+          animation-name: sonar-base;
+          animation-duration: $duration-base/2;
+        }
+      }
+    }
+  }
+}
