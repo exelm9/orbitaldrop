@@ -2,20 +2,21 @@ const db = require('../utils/dbUtilMethods.js')
 
 
 const userUtilMethods = {
-	createUser : function(token,username,userId){
-		db.addUserToDbase(token,username,userId)
-		return ({
-			token : token,
-        	username : username,
-        	userId : userId,
-        	notifications: [],
-        	blackList : [],
-        	whiteList : [],
-        	directMessages : [],
-        	nodeList : [],
-        	chatMessages : [],
-        	status : true
-		})
+	createUser : function(token,username,userId,callback){
+
+		db.getUserfromDbase(token,username,userId,callback)
+		// return ({
+		// 	token : token,
+  //       	username : username,
+  //       	userId : userId,
+  //       	notifications: [],
+  //       	blackList : [],
+  //       	whiteList : [],
+  //       	directMessages : [],
+  //       	nodeList : [],
+  //       	chatMessages : [],
+  //       	status : true
+		// })
 	},
 	blacklist: function(username, blockedUser){
 		exports.userUtilMethods.unWhiteList(username, blockedUser)

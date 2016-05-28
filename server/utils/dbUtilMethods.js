@@ -3,7 +3,7 @@ var UsersModel = require('../models/userModel.js');
 
 var helpers = {
 
-  addUserToDbase : function (token, username, userId) {
+  addUserToDbase : function (token, username, userId, callback) {
 
     var user = new UsersModel({
       token : token,
@@ -15,7 +15,8 @@ var helpers = {
       if (err) {
         console.log (err);
       } else {
-          console.log("New user successfully added to DB");
+          console.log("New user successfully added to DB")
+          callback(null, user)
         }
     });
   },
@@ -72,9 +73,17 @@ var helpers = {
     });
   },
 
-  getUserfromDbase : function (userId) {
+  getUserfromDbase : function (token,username,userId,callback) {
 
-    return UsersModel.findOne({userId : userId});
+    UsersModel.findOne({userId : userId}, function(err, user){
+
+      if(err){
+        this.addUserToDbase(token,username,userId, callback)
+      } else {
+        callback(null, user)
+      }
+
+    });
   }
 };
 
