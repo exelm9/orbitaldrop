@@ -79,7 +79,7 @@
 
 
     Emitter.prototype.emit = function(event) {
-      console.log('this ' + event + ' was recieved')
+      //console.log('this ' + event + ' was recieved')
 
       
       var args, callback, callbacks, _i, _len;

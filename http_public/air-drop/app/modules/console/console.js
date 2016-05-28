@@ -37,6 +37,37 @@ angular.module('AirDrop.console', [])
 
   })
 
+  socket.on('requestTransfer',function(response){
+      var senderUserId = response.senderUserId
+      var filename = response.filename
+      
+      /*** user will choose accept or reject.  
+      1. A decision will be emitted
+      2. Accept will cause a forced get request. Reject will send a delete 
+         request for file.
+      ***/
+      // temporarily true, let user decide
+      // var choice = true;
+      // if(choice){
+      //     window.open('/files/download');
+      // }else{
+      //     $.ajax({
+      //         url: '/files',
+      //         type: 'DELETE',
+      //         success: function(result) {
+      //             console.log(result, 'should be result of deletion')
+      //         }
+      //     });
+      // }
+      
+      
+      // socket.emit('transferChoice',{
+      //                 senderUserId:senderUserId,
+      //                 choice:choice
+      //             })
+
+  })
+
   $scope.users = {
   					// "o21ij34o1ij": {
        //        id: 'o21ij34o1ij',
