@@ -70,6 +70,11 @@ var helpers = {
           console.log("Whitelist user removed in DB");
         }
     });
+  },
+
+  getUserfromDbase : function (userId) {
+
+    return UsersModel.findOne({userId : userId});
   }
 };
 
