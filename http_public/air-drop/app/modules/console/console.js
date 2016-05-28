@@ -1,61 +1,95 @@
+// instantiate socket.io
+var socket = io();
 angular.module('AirDrop.console', [])
 
 .controller('ConsoleController', function ($scope) {
 
-  $scope.addConnection = function( connection ){
-    $scope.users[connection.id] = connection;
-  }
+  /*
+  All logic resides in controller because it's angular best practice
+  Definition of controller from google:
+    con·trol·ler
+    kənˈtrōlər/Submit
+    a person or thing that directs or regulates something.
+  */
 
-  $scope.closeConnection = function( event ){
-    console.log(event);
-    // var $el = $('#' + connection.id);
-    //     $el.addClass('closed');
-    //     setTimeout(function(){
-    //       delete $scope.users[connection.id];
-    //       $el.remove();
-    //     },100);
-  }
+  $.get('/api/user_profiles',function(response){
+      var userId = response.id;
+      var username = response.login;
+      socket.emit('createUser', userId, username);
+  })
+
+  socket.on('updateUsers',function(users){
+    // change users object format into frontend object format
+    var angularUsers = {};
+    for(var key in users){
+      var user = users[key];
+      // only one file for now, integrate with rex
+      var file = user.files;
+      angularUsers[key] = {
+        username: key,
+        packages: [{thumb:'apple.jpg'}]
+      }
+    }
+    $scope.users = angularUsers;
+    console.log($scope.users)
+    // angular stupid rerender when new data hack
+    $scope.$apply();
+
+  })
 
   $scope.users = {
-  					"o21ij34o1ij": {	
-              id: 'o21ij34o1ij',
-              username: 'Rex Kelly', 
-  						packages:[ 
-  									{thumb:'apple.jpg'}, 
-  									{thumb:'apple.jpg'}, 
-  									{thumb:'apple.jpg'}
-  						]
-  					},
-  					"o212w0k201ij": {	
-              id: 'o212w0k201ij',
-              username: 'Rex Kelly', 
-  						packages:[ 
-  									{thumb:'apple.jpg'}, 
-  									{thumb:'apple.jpg'}, 
-  									{thumb:'apple.jpg'}, 
-                    {thumb:'apple.jpg'}, 
-                    {thumb:'apple.jpg'}
-  						]
-  					},
-  					"o23wqei3o1ij": {	
-              id: 'o23wqei3o1ij',
-              username: 'Rex Kelly', 
-  						packages:[ 
-  									{thumb:'apple.jpg'}, 
-  									{thumb:'apple.jpg'}, 
-  									{thumb:'apple.jpg'}, 
-                    {thumb:'apple.jpg'}, 
-                    {thumb:'apple.jpg'}, 
-                    {thumb:'apple.jpg'}, 
-                    {thumb:'apple.jpg'}, 
-                    {thumb:'apple.jpg'}, 
-                    {thumb:'apple.jpg'}, 
-                    {thumb:'apple.jpg'},
-                    {thumb:'apple.jpg'},
-                    {thumb:'apple.jpg'}, 
-                    {thumb:'apple.jpg'}
-  						]
-  					}
+  					// "o21ij34o1ij": {
+       //        id: 'o21ij34o1ij',
+       //        username: 'Rex Kelly', 
+  					// 	packages:[ 
+  					// 				{thumb:'apple.jpg'}, 
+  					// 				{thumb:'apple.jpg'}, 
+  					// 				{thumb:'apple.jpg'}
+  					// 	]
+  					// },
+  					// "o212w0k201ij": {	
+       //        id: 'o212w0k201ij',
+       //        username: 'Rex Kelly', 
+  					// 	packages:[ 
+  					// 				{thumb:'apple.jpg'}, 
+  					// 				{thumb:'apple.jpg'}, 
+  					// 				{thumb:'apple.jpg'}, 
+       //              {thumb:'apple.jpg'}, 
+       //              {thumb:'apple.jpg'}
+  					// 	]
+  					// },
+  					// "o23wqei3o1ij": {	
+       //        id: 'o23wqei3o1ij',
+       //        username: 'Rex Kelly', 
+  					// 	packages:[ 
+  					// 				{thumb:'apple.jpg'}, 
+  					// 				{thumb:'apple.jpg'}, 
+  					// 				{thumb:'apple.jpg'}, 
+       //              {thumb:'apple.jpg'}, 
+       //              {thumb:'apple.jpg'}, 
+       //              {thumb:'apple.jpg'}, 
+       //              {thumb:'apple.jpg'}, 
+       //              {thumb:'apple.jpg'}, 
+       //              {thumb:'apple.jpg'}, 
+       //              {thumb:'apple.jpg'},
+       //              {thumb:'apple.jpg'},
+       //              {thumb:'apple.jpg'}, 
+       //              {thumb:'apple.jpg'}
+  					// 	]
+  					// }
   				}
 
+    $scope.addConnection = function( connection ){
+      $scope.users[connection.id] = connection;
+    }
+
+    $scope.closeConnection = function( event ){
+      console.log(event);
+      // var $el = $('#' + connection.id);
+      //     $el.addClass('closed');
+      //     setTimeout(function(){
+      //       delete $scope.users[connection.id];
+      //       $el.remove();
+      //     },100);
+    }
 });
