@@ -49,7 +49,7 @@ module.exports = function(express, socketedServer){
 			// add middleware validation
 			var userId;
 			if(request.session.passport){
-				userId = request.session.passport.user
+				userId = request.session.passport.user.userId
 			}else{
 				res.status(500).send({error:'User has no session!'});
 			}
@@ -74,7 +74,8 @@ module.exports = function(express, socketedServer){
 				var filename = filename;
 
 				// add uniqueId and filename to user receiving download
-				users[recieverUserId].files.push(util.createFile(uniqueId, filename));
+				users[recieverUserId].files[0] = util.createFile(uniqueId, filename);
+				
 				// emit a download prompt to the user that is receiving the upload
 				userSockets[recieverUserId].emit('requestTransfer', {filename:filename, senderUserId: userId});
 			});
@@ -91,7 +92,7 @@ module.exports = function(express, socketedServer){
 			// add middleware validation
 			var userId;
 			if(request.session.passport){
-				userId = request.session.passport.user
+				userId = request.session.passport.user.userId
 			}else{
 				response.status(500).send({error:'User has no session!'});
 			}
@@ -99,6 +100,7 @@ module.exports = function(express, socketedServer){
 			/*** build redirect to application homepage if have no files ***/
 
 			var file;
+			console.log(userId, users,'lol')
 			if(users[userId].files.length){
 				file = users[userId].files[0]
 			}
@@ -127,7 +129,7 @@ module.exports = function(express, socketedServer){
 			// add middleware validation
 			var userId;
 			if(request.session.passport){
-				userId = request.session.passport.user
+				userId = request.session.passport.user.userId
 			}else{
 				res.status(500).send({error:'User has no session!'});
 			}
@@ -156,7 +158,7 @@ module.exports = function(express, socketedServer){
 		test: function(request, response, error) {
 			// add middleware validation
 			if(request.session.passport){
-				var userId = request.session.passport.user;
+				var userId = request.session.passport.user.userId;
 				response.sendFile(path.resolve('controllers/test/test.html'));
 			}else{
 				response.send('login puhleaze');
