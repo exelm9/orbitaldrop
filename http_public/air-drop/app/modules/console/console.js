@@ -13,8 +13,8 @@ angular.module('AirDrop.console', [])
   */
 
   $.get('/api/user_profiles',function(response){
-      var userId = response.id;
-      var username = response.login;
+      var userId = response.userId;
+      var username = response.username;
       socket.emit('createUser', userId, username);
   })
 
@@ -26,7 +26,8 @@ angular.module('AirDrop.console', [])
       // only one file for now, integrate with rex
       var file = user.files;
       angularUsers[key] = {
-        username: key,
+        id: key,
+        username: user.username,
         packages: [{thumb:'apple.jpg'}]
       }
     }
