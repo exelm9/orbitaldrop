@@ -1,12 +1,11 @@
 
 module.exports = {
-	createUser: function(socketId, userId, username){
+	createUser: function(socketId, userId){
 		var user = {};
 		user.socketId = socketId;
 		user.userId = userId;
-		user.username = username;
 		user.files = [];
-		return user;
+		return user
 	},
 	createFile: function(fileId, filename){
 		var file = {};
@@ -19,6 +18,7 @@ module.exports = {
 			var user = users[key];
 
 			if(user.socketId === socketId){
+				console.log(user,'matched')
 				return user;
 			}
 		}
