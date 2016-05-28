@@ -18,6 +18,4 @@ module.exports = function(app, express) {
 
   app.get('/login/github/return', helpers.githubReturn);
 
-  //app.get('*', helpers.checkAuth)
-
 }
