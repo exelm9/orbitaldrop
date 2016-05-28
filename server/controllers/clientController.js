@@ -1,31 +1,23 @@
 const userList = require('../models/userModel.js')
+const path = require('path');
 
 const helper = {
-  ensureLogin : function(req,res){
-    if(req.isAuthenticated()){
-      res.end()
-    } else {
-      res.redirect('/login')
-    }
+  serveClient : function(req,res){
+    res.sendFile(path.resolve('../http_public/air-drop/_index.html'))
   },
+
   logout : function(req, res) {
-    req.session.destroy();
+    req.logout();
     res.redirect('/login');
   },
-  isLoggedIn: function(req, res, next) {
-    if (req.isAuthenticated()){
-      return next();
-    } else {
-      res.redirect('/login');
-    }
-  },
+
   sendJSON: function(req,res) {
     res.json(req.user)
   },
-  catchAll: function(req,res){
+  handleAll: function(req,res){
     if(req.isAuthenticated()){
-      res.reditect('/air-drop')
-    } else {
+      res.redirect('/air-drop/')
+    }else{
       res.redirect('/login')
     }
   }

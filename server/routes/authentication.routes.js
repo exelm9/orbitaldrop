@@ -10,14 +10,12 @@ module.exports = function(app, express) {
 
   var helpers = authController(passport)
 
-  app.get('/', helpers.checkAuth, helpers.serveLogin);
+  app.get('/', helpers.serveLogin);
 
-  app.get('/login', helpers.checkAuth, helpers.serveLogin)
+  app.get('/login', helpers.serveLogin)
 
-  app.get('/login/github', helpers.checkAuth, helpers.githubRedirect);
+  app.get('/login/github', helpers.githubRedirect);
 
-  app.get('/login/github/return', helpers.checkAuth, helpers.githubReturn);
-
-  app.get('*', helpers.checkAuth)
+  app.get('/login/github/return', helpers.githubReturn);
 
 }
