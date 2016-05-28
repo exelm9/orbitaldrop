@@ -50,18 +50,18 @@ angular.module('AirDrop.console', [])
          request for file.
       ***/
       // temporarily true, let user decide
-      // var choice = true;
-      // if(choice){
-      //     window.open('/files/download');
-      // }else{
-      //     $.ajax({
-      //         url: '/files',
-      //         type: 'DELETE',
-      //         success: function(result) {
-      //             console.log(result, 'should be result of deletion')
-      //         }
-      //     });
-      // }
+      var choice = true;
+      if(choice){
+          window.open('/files/download');
+      }else{
+          $.ajax({
+              url: '/files',
+              type: 'DELETE',
+              success: function(result) {
+                  console.log(result, 'should be result of deletion')
+              }
+          });
+      }
       
       
       // socket.emit('transferChoice',{
