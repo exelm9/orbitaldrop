@@ -26,7 +26,8 @@ angular.module('AirDrop.console', [])
       // only one file for now, integrate with rex
       var file = user.files;
       angularUsers[key] = {
-        username: key,
+        id: key,
+        username: user.username,
         packages: [{thumb:'apple.jpg'}]
       }
     }

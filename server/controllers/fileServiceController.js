@@ -18,8 +18,8 @@ module.exports = function(express, socketedServer){
 		socket event, we will add/remove the user instance and emit the users list to all clients.
 	***/
 	io.on('connection', function(socket){
-		socket.on('createUser', function(sessionId){
-			users[sessionId] = util.createUser(socket.id, sessionId);
+		socket.on('createUser', function(sessionId, username){
+			users[sessionId] = util.createUser(socket.id, sessionId, username);
 			userSockets[sessionId] = socket;
 			io.sockets.emit('updateUsers', users);
 		})
