@@ -32,7 +32,6 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   noop = function() {};
-  console.log('noop called');
 
   Emitter = (function() {
     function Emitter() {}
@@ -48,7 +47,6 @@
       }
     
       this._callbacks[event].push(fn);
-      console.log('Listener Added', event)
       return this;
     };
 
@@ -81,6 +79,7 @@
 
 
     Emitter.prototype.emit = function(event) {
+      console.log('this ' + event + ' was recieved')
 
       
       var args, callback, callbacks, _i, _len;
@@ -94,7 +93,6 @@
 
         for (_i = 0, _len = callbacks.length; _i < _len; _i++) {
 
-          console.log('emiting  callback for :', event);
           callback = callbacks[_i];
           callback.apply(this, args);
         }
@@ -145,11 +143,11 @@
 
 
     /*
-    This is a list of all available events you can register on a dropzone object.
+          This is a list of all available events you can register on a dropzone object.
     
-    You can register an event handler like this:
+          You can register an event handler like this:
     
-        dropzone.on("dragEnter", function() { });
+          dropzone.on("dragEnter", function() { });
      */
 
     Dropzone.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedfile", "addedfiles", "removedfile", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxfilesexceeded", "maxfilesreached", "queuecomplete"];
@@ -262,43 +260,35 @@
       },
 
       /*
-      Those functions register themselves to the events on init and handle all
-      the user interface specific stuff. Overwriting them won't break the upload
-      but can break the way it's displayed.
-      You can overwrite them if you don't like the default behavior. If you just
-      want to add an additional event handler, register it on the dropzone object
-      and don't overwrite those options.
+        Those functions register themselves to the events on init and handle all
+        the user interface specific stuff. Overwriting them won't break the upload
+        but can break the way it's displayed.
+        You can overwrite them if you don't like the default behavior. If you just
+        want to add an additional event handler, register it on the dropzone object
+        and don't overwrite those options.
        */
       drop: function(e) {
-        this.emit('drag-hover', e)
         return this.element.classList.remove("dz-drag-hover");
       },
       dragstart: function(e){
-        this.emit('drag-start', e)
         noop
       },
       dragend: function(e) {
-        this.emit('drag-end', e)
         return this.element.classList.remove("dz-drag-hover");
       },
       dragenter: function(e) {
-        this.emit('drag-enter', e)
         return this.element.classList.add("dz-drag-hover");
       },
       dragover: function(e) {
-        this.emit('drag-over', e)
         return this.element.classList.add("dz-drag-hover");
       },
       dragleave: function(e) {
-        this.emit('drag-leave', e)
         return this.element.classList.remove("dz-drag-hover");
       },
       paste: function(e){
-        this.emit('paste', e)
         noop
       },
       reset: function(e) {
-        this.emit('reset', e)
         return this.element.classList.remove("dz-started");
       },
       addedfile: function(file) {
@@ -534,7 +524,6 @@
     }
 
     Dropzone.prototype.getAcceptedFiles = function() {
-      console.log('getAcceptedFiles called');
       var file, _i, _len, _ref, _results;
       _ref = this.files;
       _results = [];
@@ -548,7 +537,6 @@
     };
 
     Dropzone.prototype.getRejectedFiles = function() {
-      console.log('getRejectedFiles called');
       var file, _i, _len, _ref, _results;
       _ref = this.files;
       _results = [];
@@ -575,22 +563,18 @@
     };
 
     Dropzone.prototype.getQueuedFiles = function() {
-      console.log('getQueuedFiles called');
       return this.getFilesWithStatus(Dropzone.QUEUED);
     };
 
     Dropzone.prototype.getUploadingFiles = function() {
-      console.log('getUploadingFiles called');
       return this.getFilesWithStatus(Dropzone.UPLOADING);
     };
 
     Dropzone.prototype.getAddedFiles = function() {
-      console.log('getAddedFiles called');
       return this.getFilesWithStatus(Dropzone.ADDED);
     };
 
     Dropzone.prototype.getActiveFiles = function() {
-      console.log('getActiveFiles called');
       var file, _i, _len, _ref, _results;
       _ref = this.files;
       _results = [];
@@ -604,7 +588,6 @@
     };
 
     Dropzone.prototype.init = function() {
-      console.log('init called');
       var eventName, noPropagation, setupHiddenFileInput, _i, _len, _ref, _ref1;
       if (this.element.tagName === "form") {
         this.element.setAttribute("enctype", "multipart/form-data");
@@ -756,7 +739,6 @@
     };
 
     Dropzone.prototype.destroy = function() {
-      console.log('destroy called');
       this.emit("destroying");
       var _ref;
       this.disable();
@@ -807,7 +789,6 @@
     };
 
     Dropzone.prototype.getFallbackForm = function() {
-      console.log('getFallbackForm called');
       var existingFallback, fields, fieldsString, form;
       if (existingFallback = this.getExistingFallback()) {
         return existingFallback;
@@ -829,7 +810,6 @@
     };
 
     Dropzone.prototype.getExistingFallback = function() {
-      console.log('getExistingFallback called');
       var fallback, getFallback, tagName, _i, _len, _ref;
       getFallback = function(elements) {
         var el, _i, _len;
@@ -870,7 +850,6 @@
     };
 
     Dropzone.prototype.removeEventListeners = function() {
-      console.log('removeEventListeners called');
       var elementListeners, event, listener, _i, _len, _ref, _results;
       _ref = this.listeners;
       _results = [];
@@ -891,7 +870,6 @@
     };
 
     Dropzone.prototype.disable = function() {
-      console.log('disable called');
       var file, _i, _len, _ref, _results;
       this.clickableElements.forEach(function(element) {
         return element.classList.remove("dz-clickable");
@@ -907,7 +885,6 @@
     };
 
     Dropzone.prototype.enable = function() {
-      console.log('enable called');
       this.clickableElements.forEach(function(element) {
         return element.classList.add("dz-clickable");
       });
@@ -935,7 +912,6 @@
     };
 
     Dropzone.prototype._updateMaxFilesReachedClass = function() {
-      console.log('_updateMaxFilesReachedClass called');
       if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
         if (this.getAcceptedFiles().length === this.options.maxFiles) {
           this.emit('maxfilesreached', this.files);
@@ -1016,7 +992,6 @@
       var dirReader, errorHandler, readEntries;
       dirReader = directory.createReader();
       errorHandler = function(error) {
-        return typeof console !== "undefined" && console !== null ? typeof console.log === "function" ? console.log(error) : void 0 : void 0;
       };
       readEntries = (function(_this) {
         return function() {
@@ -1127,7 +1102,6 @@
     };
 
     Dropzone.prototype._processThumbnailQueue = function() {
-      console.log('_processThumbnailQueue called');
       if (this._processingThumbnail || this._thumbnailQueue.length === 0) {
         return;
       }
@@ -1221,7 +1195,6 @@
     };
 
     Dropzone.prototype.processQueue = function() {
-      console.log('processQueue called');
       var i, parallelUploads, processingLength, queuedFiles;
       parallelUploads = this.options.parallelUploads;
       processingLength = this.getUploadingFiles().length;
@@ -1310,7 +1283,6 @@
     };
 
     resolveOption = function() {
-      console.log('resolveOption called');
       var args, option;
       option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
       if (typeof option === 'function') {
@@ -1541,7 +1513,6 @@
   Dropzone.autoDiscover = true;
 
   Dropzone.discover = function() {
-    console.log('discover called');
     var checkElements, dropzone, dropzones, _i, _len, _results;
     if (document.querySelectorAll) {
       dropzones = document.querySelectorAll(".dropzone");
@@ -1579,7 +1550,6 @@
   Dropzone.blacklistedBrowsers = [/opera.*Macintosh.*version\/12/i];
 
   Dropzone.isBrowserSupported = function() {
-    console.log('isBrowserSupported called');
     var capableBrowser, regex, _i, _len, _ref;
     capableBrowser = true;
     if (window.File && window.FileReader && window.FileList && window.Blob && window.FormData && document.querySelector) {
@@ -1748,10 +1718,9 @@
 
 
   /*
-  
-  Bugfix for iOS 6 and 7
-  Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
-  based on the work of https://github.com/stomita/ios-imagefile-megapixel
+      Bugfix for iOS 6 and 7
+      Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
+      based on the work of https://github.com/stomita/ios-imagefile-megapixel
    */
 
   detectVerticalSquash = function(img) {
@@ -1824,7 +1793,6 @@
       }
     };
     poll = function() {
-      console.log('poll called');
       var e;
       try {
         root.doScroll("left");
@@ -1851,7 +1819,6 @@
   };
 
   Dropzone._autoDiscoverFunction = function() {
-    console.log('_autoDiscoverFunction called');
     if (Dropzone.autoDiscover) {
       return Dropzone.discover();
     }

@@ -4,9 +4,19 @@ const path = require('path');
 module.exports = function(passport) {
 	return({
 		
-
 		serveLogin : function(req,res){
-			res.sendFile(path.resolve('../http_public/login/_index.html'))
+		    /**
+		        Bug:
+
+		          when using path.resolve() like in our example bellow, the file paths 
+		          do not seem to resolve correctly on all systems, user path.join() instead.
+		          
+		        example:  
+
+					res.sendFile(path.resolve('../http_public/login/_index.html'))
+
+			*/
+			res.sendFile(path.join(__dirname, '/../../http_public/login/_index.html'))
 		},
 	
 		githubRedirect : passport.authenticate('github'),
