@@ -1,6 +1,6 @@
 const authController = require('../controllers/authController.js')
-const passport = require('passport');
-const session = require('express-session');
+const       passport = require('passport');
+const        session = require('express-session');
 require('../config/passport.js')(passport);
 
 module.exports = function(app, express) {
@@ -8,7 +8,7 @@ module.exports = function(app, express) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  var helpers = authController(passport)
+  const helpers = authController(passport)
 
   app.get('/', helpers.serveLogin);
 

@@ -1,33 +1,23 @@
-const db = require('../utils/dbUtilMethods.js')
+const db       = require('../utils/dbUtilMethods.js')
 
+module.exports = {
 
-const userUtilMethods = {
 	createUser : function(token,username,userId,callback){
-
 		db.getUserfromDbase(token,username,userId,callback)
-		// return ({
-		// 	token : token,
-  //       	username : username,
-  //       	userId : userId,
-  //       	notifications: [],
-  //       	blackList : [],
-  //       	whiteList : [],
-  //       	directMessages : [],
-  //       	nodeList : [],
-  //       	chatMessages : [],
-  //       	status : true
-		// })
 	},
+
 	blacklist: function(username, blockedUser){
 		exports.userUtilMethods.unWhiteList(username, blockedUser)
 		username.blackList.push(blockedUser)
 		db.addToBlackListDB(username, blockedUser)
 	},
+
 	whitelist: function(username, approvedUser){
 		exports.userUtilMethods.unBlackList(username, approvedUser)
 		username.whiteList.push(blockedUser)
 		db.addToWhiteListDB(username,blockedUser)
 	},
+
 	unBlackList: function(username, unblockedUser){
 		for(var i = 0; i < username.blacklist.length; i++){
 			if(username.blacklist[i] === unblockedUser){
@@ -37,6 +27,7 @@ const userUtilMethods = {
 			}
 		}
 	},
+	
 	unWhiteList: function(username, unapprovedUser){
 		for(var i = 0; i < username.whitelist.length; i++){
 			if(username.whitelist[i] === unapprovedUser){
@@ -47,5 +38,3 @@ const userUtilMethods = {
 		}
 	}
 }
-
-module.exports = userUtilMethods

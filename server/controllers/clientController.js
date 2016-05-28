@@ -1,7 +1,7 @@
 const userList = require('../models/userModel.js')
-const path = require('path');
+const path     = require('path');
 
-const helper = {
+module.exports = {
   serveClient : function(req,res){
 
     /**
@@ -34,5 +34,3 @@ const helper = {
     }
   }
 }
-
-module.exports = helper
