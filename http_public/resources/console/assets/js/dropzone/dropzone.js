@@ -32,6 +32,7 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   noop = function() {};
+  console.log('noop called');
 
   Emitter = (function() {
     function Emitter() {}
@@ -48,6 +49,7 @@
     };
 
     Emitter.prototype.emit = function() {
+      console.log('emit called');
       var args, callback, callbacks, event, _i, _len;
       event = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
       this._callbacks = this._callbacks || {};
@@ -397,6 +399,7 @@
     };
 
     extend = function() {
+      console.log('extend called');
       var key, object, objects, target, val, _i, _len;
       target = arguments[0], objects = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
       for (_i = 0, _len = objects.length; _i < _len; _i++) {
@@ -468,6 +471,7 @@
     }
 
     Dropzone.prototype.getAcceptedFiles = function() {
+      console.log('getAcceptedFiles called');
       var file, _i, _len, _ref, _results;
       _ref = this.files;
       _results = [];
@@ -481,6 +485,7 @@
     };
 
     Dropzone.prototype.getRejectedFiles = function() {
+      console.log('getRejectedFiles called');
       var file, _i, _len, _ref, _results;
       _ref = this.files;
       _results = [];
@@ -507,18 +512,22 @@
     };
 
     Dropzone.prototype.getQueuedFiles = function() {
+      console.log('getQueuedFiles called');
       return this.getFilesWithStatus(Dropzone.QUEUED);
     };
 
     Dropzone.prototype.getUploadingFiles = function() {
+      console.log('getUploadingFiles called');
       return this.getFilesWithStatus(Dropzone.UPLOADING);
     };
 
     Dropzone.prototype.getAddedFiles = function() {
+      console.log('getAddedFiles called');
       return this.getFilesWithStatus(Dropzone.ADDED);
     };
 
     Dropzone.prototype.getActiveFiles = function() {
+      console.log('getActiveFiles called');
       var file, _i, _len, _ref, _results;
       _ref = this.files;
       _results = [];
@@ -532,6 +541,7 @@
     };
 
     Dropzone.prototype.init = function() {
+      console.log('init called');
       var eventName, noPropagation, setupHiddenFileInput, _i, _len, _ref, _ref1;
       if (this.element.tagName === "form") {
         this.element.setAttribute("enctype", "multipart/form-data");
@@ -683,6 +693,8 @@
     };
 
     Dropzone.prototype.destroy = function() {
+      console.log('destroy called');
+      this.emit("destroying");
       var _ref;
       this.disable();
       this.removeAllFiles(true);
@@ -695,6 +707,7 @@
     };
 
     Dropzone.prototype.updateTotalUploadProgress = function() {
+      console.log('updateTotalUploadProgress called');
       var activeFiles, file, totalBytes, totalBytesSent, totalUploadProgress, _i, _len, _ref;
       totalBytesSent = 0;
       totalBytes = 0;
@@ -710,6 +723,7 @@
       } else {
         totalUploadProgress = 100;
       }
+
       return this.emit("totaluploadprogress", totalUploadProgress, totalBytes, totalBytesSent);
     };
 
@@ -729,6 +743,7 @@
     };
 
     Dropzone.prototype.getFallbackForm = function() {
+      console.log('getFallbackForm called');
       var existingFallback, fields, fieldsString, form;
       if (existingFallback = this.getExistingFallback()) {
         return existingFallback;
@@ -750,6 +765,7 @@
     };
 
     Dropzone.prototype.getExistingFallback = function() {
+      console.log('getExistingFallback called');
       var fallback, getFallback, tagName, _i, _len, _ref;
       getFallback = function(elements) {
         var el, _i, _len;
@@ -770,6 +786,8 @@
     };
 
     Dropzone.prototype.setupEventListeners = function() {
+      console.log('setupEventListeners called');
+      console.log(this.listeners);
       var elementListeners, event, listener, _i, _len, _ref, _results;
       _ref = this.listeners;
       _results = [];
@@ -790,6 +808,7 @@
     };
 
     Dropzone.prototype.removeEventListeners = function() {
+      console.log('removeEventListeners called');
       var elementListeners, event, listener, _i, _len, _ref, _results;
       _ref = this.listeners;
       _results = [];
@@ -810,6 +829,7 @@
     };
 
     Dropzone.prototype.disable = function() {
+      console.log('disable called');
       var file, _i, _len, _ref, _results;
       this.clickableElements.forEach(function(element) {
         return element.classList.remove("dz-clickable");
@@ -825,6 +845,7 @@
     };
 
     Dropzone.prototype.enable = function() {
+      console.log('enable called');
       this.clickableElements.forEach(function(element) {
         return element.classList.add("dz-clickable");
       });
@@ -852,6 +873,7 @@
     };
 
     Dropzone.prototype._updateMaxFilesReachedClass = function() {
+      console.log('_updateMaxFilesReachedClass called');
       if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
         if (this.getAcceptedFiles().length === this.options.maxFiles) {
           this.emit('maxfilesreached', this.files);
@@ -1041,6 +1063,7 @@
     };
 
     Dropzone.prototype._processThumbnailQueue = function() {
+      console.log('_processThumbnailQueue called');
       if (this._processingThumbnail || this._thumbnailQueue.length === 0) {
         return;
       }
@@ -1134,6 +1157,7 @@
     };
 
     Dropzone.prototype.processQueue = function() {
+      console.log('processQueue called');
       var i, parallelUploads, processingLength, queuedFiles;
       parallelUploads = this.options.parallelUploads;
       processingLength = this.getUploadingFiles().length;
@@ -1221,6 +1245,7 @@
     };
 
     resolveOption = function() {
+      console.log('resolveOption called');
       var args, option;
       option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
       if (typeof option === 'function') {
@@ -1451,6 +1476,7 @@
   Dropzone.autoDiscover = true;
 
   Dropzone.discover = function() {
+    console.log('discover called');
     var checkElements, dropzone, dropzones, _i, _len, _results;
     if (document.querySelectorAll) {
       dropzones = document.querySelectorAll(".dropzone");
@@ -1477,6 +1503,7 @@
       dropzone = dropzones[_i];
       if (Dropzone.optionsForElement(dropzone) !== false) {
         _results.push(new Dropzone(dropzone));
+
       } else {
         _results.push(void 0);
       }
@@ -1487,6 +1514,7 @@
   Dropzone.blacklistedBrowsers = [/opera.*Macintosh.*version\/12/i];
 
   Dropzone.isBrowserSupported = function() {
+    console.log('isBrowserSupported called');
     var capableBrowser, regex, _i, _len, _ref;
     capableBrowser = true;
     if (window.File && window.FileReader && window.FileList && window.Blob && window.FormData && document.querySelector) {
@@ -1731,6 +1759,7 @@
       }
     };
     poll = function() {
+      console.log('poll called');
       var e;
       try {
         root.doScroll("left");
@@ -1757,6 +1786,7 @@
   };
 
   Dropzone._autoDiscoverFunction = function() {
+    console.log('_autoDiscoverFunction called');
     if (Dropzone.autoDiscover) {
       return Dropzone.discover();
     }
