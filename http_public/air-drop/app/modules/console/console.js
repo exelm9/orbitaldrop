@@ -17,14 +17,18 @@ angular.module('AirDrop.console', [])
   }
 
   $scope.users = {
-  					"o21ij34o1ij": {	username: 'Rex Kelly', 
+  					"o21ij34o1ij": {	
+              id: 'o21ij34o1ij',
+              username: 'Rex Kelly', 
   						packages:[ 
   									{thumb:'apple.jpg'}, 
   									{thumb:'apple.jpg'}, 
   									{thumb:'apple.jpg'}
   						]
   					},
-  					"o212w0k201ij": {	username: 'Rex Kelly', 
+  					"o212w0k201ij": {	
+              id: 'o212w0k201ij',
+              username: 'Rex Kelly', 
   						packages:[ 
   									{thumb:'apple.jpg'}, 
   									{thumb:'apple.jpg'}, 
@@ -33,7 +37,9 @@ angular.module('AirDrop.console', [])
                     {thumb:'apple.jpg'}
   						]
   					},
-  					"o23wqei3o1ij": {	username: 'Rex Kelly', 
+  					"o23wqei3o1ij": {	
+              id: 'o23wqei3o1ij',
+              username: 'Rex Kelly', 
   						packages:[ 
   									{thumb:'apple.jpg'}, 
   									{thumb:'apple.jpg'}, 
