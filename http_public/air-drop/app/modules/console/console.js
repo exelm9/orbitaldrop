@@ -31,7 +31,6 @@ angular.module('AirDrop.console', [])
       }
     }
     $scope.users = angularUsers;
-    console.log($scope.users)
     // angular stupid rerender when new data hack
     $scope.$apply();
 
@@ -84,7 +83,6 @@ angular.module('AirDrop.console', [])
     }
 
     $scope.closeConnection = function( event ){
-      console.log(event);
       // var $el = $('#' + connection.id);
       //     $el.addClass('closed');
       //     setTimeout(function(){

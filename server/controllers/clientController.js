@@ -3,7 +3,19 @@ const path = require('path');
 
 const helper = {
   serveClient : function(req,res){
-    res.sendFile(path.resolve('../http_public/air-drop/_index.html'))
+
+    /**
+        Bug:
+
+          when using path.resolve() like in our example bellow, the file paths 
+          do not seem to resolve correctly on all systems, user path.join() instead.
+          
+        example: 
+
+          res.sendFile(path.resolve('../http_public/air-drop/_index.html'))
+
+    */
+    res.sendFile(path.join( __dirname, '/../../http_public/air-drop/_index.html'))
   },
 
   logout : function(req, res) {
