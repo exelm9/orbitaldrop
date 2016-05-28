@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     
     <title>AirDrop | For Everyone! </title>
+
+    <audio id="ping" preload = "auto" src="/resources/soundeffects/pindrop.mp3"></audio>
     
     <link rel="stylesheet" type="text/css" href="/resources/console/assets/css/resets/reset.css">
     <link rel="stylesheet" type="text/css" href="/resources/console/assets/fonts/font-awesome/css/font-awesome.min.css">
@@ -18,6 +20,10 @@
       body{
         min-width:500px; // suppose you want minimun width of 500px
         _width: expression( document.body.clientWidth > 500 ? "500px" : "auto" ); /* sets max-width for IE */
+      }
+
+      #ping {
+        display;none;
       }
 
       .pending {
