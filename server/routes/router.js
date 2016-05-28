@@ -2,7 +2,11 @@ var path = require('path')
 module.exports = function(app, express, socketedServer){
     
     // Static routes
-    app.use(express.static(__dirname + '/../../http_public/'));
+    app.use(express.static(__dirname + '/../../http_public/'))
+
+    
+
+
     
     // Module routes
     require('./authentication.routes.js')(app, express)

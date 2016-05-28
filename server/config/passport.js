@@ -17,17 +17,13 @@ module.exports = function(passport){
 
     
     passport.serializeUser(function(user, done){
-        done(null, user.id)
+        done(null, user)
     });
 
     //serialize our users
 
-    passport.deserializeUser(function(id, done) {
-        for(var i = 0; i < userList.length; i++){
-            if(userList[i].userId == id){
-                done(null, userList[i])
-            }
-        }
+    passport.deserializeUser(function(user, done) {
+        done(null, user)
     });
 
     //deserialize them when they leave logout
