@@ -14,7 +14,7 @@ i { position: absolute; top: 104px; width: 100%; text-align: center; font-style:
 .node-status.active::after, .beacon::after { border: 1px solid #cfcfcf; display: block; content: ''; -webkit-animation: active 3s infinite linear; animation: active 3s infinite linear; height: 10px; margin-top: -149px; margin-left: -43px; border-radius: 100%; padding: 100%; margin-bottom: -100%; position: relative; z-index: 1; -moz-box-shadow: 0px 0px 5px rgba(182, 179, 253, 0.15); -webkit-box-shadow: 0px 0px 5px rgba(182, 179, 253, 0.15); box-shadow: 0px 0px 5px rgba(182, 179, 253, 0.15); float: left; clear: none;}
 
 /* Uploader */
-.dz-preview{ opacity: 0; -webkit-animation: fadeOut 2s linear; animation: fadeOut  2s linear; position: absolute; top: 0px; left: 0px;}
+.dz-preview{ opacity: 0; -webkit-animation: fadeOut 2s linear; animation: fadeOut  2s linear; position: relative; top: 90px; left: 11px; z-index: 100;}
 .pending .package { position: absolute; top: -40%; left: 39%; height: 170px; border-width: 3px; /* border-style: solid; */ /* border-color: black; */ /* border-radius: 50%; */ -webkit-animation: spin-right 10s linear infinite; -moz-animation: spin-right 10s linear infinite; -ms-animation: spin-right 10s linear infinite; -o-animation: spin-right 10s linear infinite; animation: spin-right 10s linear infinite; z-index: 1;}
 .package:hover { -webkit-animation-play-state: paused; animation-play-state: paused;}
 @-webkit-keyframes spin-right {100% { -webkit-transform: rotate(360deg); -moz-transform: rotate(360deg); -ms-transform: rotate(360deg); -o-transform: rotate(360deg); transform: rotate(360deg);}}

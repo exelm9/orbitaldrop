@@ -33,17 +33,18 @@ angular.module('AirDrop').directive('userNode', function() {
 
 	return {
 		restrict: 'E',
-		controller: function(){},
 		link: function(scope, element, attrs) {
-
 	        var config = {
 	            url: '/upload',
+	            id: scope.user.id,
 	            maxFilesize: 100,
 	            paramName: "uploadfile",
 	            maxThumbnailFilesize: 10,
 	            parallelUploads: 1,
 	            autoProcessQueue: false
 	        };
+
+	        console.log(config)
 
 	        var eventHandlers = {
 
