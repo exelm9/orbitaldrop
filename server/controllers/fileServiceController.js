@@ -62,21 +62,21 @@ module.exports = function(express, socketedServer){
 			
 			// add listener when bus boy handles a file
 			busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+				//console.log(file, req, 'here')
 				// create a unique id and prepend to filename so there isn't namesake clashing
 				var uniqueId = uuid.v4();
 				// asychronously write a file using a stream to uploads folder
 				fstream = fs.createWriteStream(__dirname + '/../uploads/' + uniqueId + filename);
 				file.pipe(fstream);
 				// added another multi form parser because busboy doensn't grab all the fields in the form at once
-				var form = new multiparty.Form();
-			    form.parse(request, function(err, fields) {
-			      var recieverUserId = fields.recieverUserId[0]
-			      var filename = fields.filename[0]
-			      // add uniqueId and filename to user receiving download
-			      users[recieverUserId].files.push(util.createFile(uniqueId, filename));
-			      // emit a download prompt to the user that is receiving the upload
-			      userSockets[recieverUserId].emit('requestTransfer', {filename:filename, senderUserId: userId});
-			    });
+
+				var recieverUserId = request.query.id;
+				var filename = filename;
+
+				// add uniqueId and filename to user receiving download
+				users[recieverUserId].files.push(util.createFile(uniqueId, filename));
+				// emit a download prompt to the user that is receiving the upload
+				userSockets[recieverUserId].emit('requestTransfer', {filename:filename, senderUserId: userId});
 			});
 
 			// close request
