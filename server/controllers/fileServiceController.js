@@ -135,11 +135,12 @@ module.exports = function(express, socketedServer){
 			}
 
 			var file;
+			console.log(users[userId], 'what')
 			if(users[userId].files.length){
 				file = users[userId].files[0]
 			}
 
-			var filepath = __dirname + '/uploads/' + file.fileId + file.filename;
+			var filepath = __dirname + '/../uploads/' + file.fileId + file.filename;
 			var filename = path.basename(filepath);
 
 			/*** Build check if file exists ***/
