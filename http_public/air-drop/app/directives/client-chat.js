@@ -6,7 +6,7 @@ angular.module('AirDrop').directive('clientChat', function() {
 		scope:false,
 		controller: function(){},
 		link: function( scope, element, attributes ){},
-		templateUrl: '/air-drop/app/templates/untitled.html'
+		templateUrl: '/air-drop/app/templates/client-chat.tpl.html'
 	}
 
 });
