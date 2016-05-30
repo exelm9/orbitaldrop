@@ -2,16 +2,15 @@ const fs = require('fs');
 const Busboy = require('busboy');
 const uuid = require('uuid');
 const path = require('path');
-const socketIO = require('socket.io');
 const util = require('../utils/fileServiceUtil.js');
 const mime = require('mime-types');
 const multiparty = require('multiparty');
 
 var users = require('../models/activeUserModel.js');
 
-module.exports = function(express, socketedServer){
+module.exports = function(express, io){
 	// adds event listeners to the http.Server instance
-	const io = socketIO(socketedServer);
+	
 	var userSockets = {}
 	/*** 
 		The users object will hold the state of our application.  When a new user emits/ends a 
@@ -49,7 +48,7 @@ module.exports = function(express, socketedServer){
 			// add middleware validation
 			var userId;
 			if(request.session.passport){
-				userId = request.session.passport.user.userId
+				userId = request.session.passport.user.id
 			}else{
 				res.status(500).send({error:'User has no session!'});
 			}
@@ -92,7 +91,7 @@ module.exports = function(express, socketedServer){
 			// add middleware validation
 			var userId;
 			if(request.session.passport){
-				userId = request.session.passport.user.userId
+				userId = request.session.passport.user.id
 			}else{
 				response.status(500).send({error:'User has no session!'});
 			}
@@ -129,7 +128,7 @@ module.exports = function(express, socketedServer){
 			// add middleware validation
 			var userId;
 			if(request.session.passport){
-				userId = request.session.passport.user.userId
+				userId = request.session.passport.user.id
 			}else{
 				res.status(500).send({error:'User has no session!'});
 			}
@@ -159,7 +158,7 @@ module.exports = function(express, socketedServer){
 		test: function(request, response, error) {
 			// add middleware validation
 			if(request.session.passport){
-				var userId = request.session.passport.user.userId;
+				var userId = request.session.passport.user.id;
 				response.sendFile(path.resolve('controllers/test/test.html'));
 			}else{
 				response.send('login puhleaze');

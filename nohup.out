@@ -1,0 +1,58 @@
+Mon, 30 May 2016 19:42:13 GMT express-session deprecated undefined resave option; provide resave option at server/routes/authentication.routes.js:7:11
+Mon, 30 May 2016 19:42:13 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at server/routes/authentication.routes.js:7:11
+Database successfully connected
+AuthorizationError: The redirect_uri MUST match the registered callback URL for this application.
+    at Strategy.OAuth2Strategy.authenticate (/root/MKS38/apps/AirDrop/server/node_modules/passport-github/node_modules/passport-oauth2/lib/strategy.js:131:25)
+    at attempt (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/middleware/authenticate.js:348:16)
+    at authenticate (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/middleware/authenticate.js:349:7)
+    at Layer.handle [as handle_request] (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/route.js:131:13)
+    at Route.dispatch (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/layer.js:95:5)
+    at /root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/index.js:277:22
+    at Function.process_params (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/index.js:330:12)
+    at next (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/index.js:271:10)
+    at SessionStrategy.strategy.pass (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/middleware/authenticate.js:325:9)
+    at SessionStrategy.authenticate (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/strategies/session.js:71:10)
+    at attempt (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/middleware/authenticate.js:348:16)
+    at authenticate (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/middleware/authenticate.js:349:7)
+    at Layer.handle [as handle_request] (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/index.js:312:13)
+Mon, 30 May 2016 19:44:00 GMT express-session deprecated undefined resave option; provide resave option at server/routes/authentication.routes.js:7:11
+Mon, 30 May 2016 19:44:00 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at server/routes/authentication.routes.js:7:11
+Database successfully connected
+AuthorizationError: The redirect_uri MUST match the registered callback URL for this application.
+    at Strategy.OAuth2Strategy.authenticate (/root/MKS38/apps/AirDrop/server/node_modules/passport-github/node_modules/passport-oauth2/lib/strategy.js:131:25)
+    at attempt (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/middleware/authenticate.js:348:16)
+    at authenticate (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/middleware/authenticate.js:349:7)
+    at Layer.handle [as handle_request] (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/route.js:131:13)
+    at Route.dispatch (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/layer.js:95:5)
+    at /root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/index.js:277:22
+    at Function.process_params (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/index.js:330:12)
+    at next (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/index.js:271:10)
+    at SessionStrategy.strategy.pass (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/middleware/authenticate.js:325:9)
+    at SessionStrategy.authenticate (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/strategies/session.js:71:10)
+    at attempt (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/middleware/authenticate.js:348:16)
+    at authenticate (/root/MKS38/apps/AirDrop/server/node_modules/passport/lib/middleware/authenticate.js:349:7)
+    at Layer.handle [as handle_request] (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/root/MKS38/apps/AirDrop/server/node_modules/express/lib/router/index.js:312:13)
+Mon, 30 May 2016 20:55:53 GMT express-session deprecated undefined resave option; provide resave option at server/routes/authentication.routes.js:7:11
+Mon, 30 May 2016 20:55:53 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at server/routes/authentication.routes.js:7:11
+events.js:85
+      throw er; // Unhandled 'error' event
+            ^
+Error: listen EADDRINUSE
+    at exports._errnoException (util.js:746:11)
+    at Server._listen2 (net.js:1158:14)
+    at listen (net.js:1184:10)
+    at Server.listen (net.js:1269:5)
+    at Object.<anonymous> (/root/MKS38/apps/AirDrop/server/server.js:9:16)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.Module.runMain (module.js:501:10)
+    at startup (node.js:129:16)
+    at node.js:814:3

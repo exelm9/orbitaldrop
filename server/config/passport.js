@@ -19,9 +19,11 @@ module.exports = function(passport){
     clientSecret    : configAuth.github.clientSecret,
     callbackURL     : configAuth.github.callbackURL
 
-  },function(token, refreshToken, profile, done) {
+  },
+  function(token, refreshToken, profile, done) {
       process.nextTick(function(){
-        User.createUser(token, profile._json.login, profile._json.id, done)
+        return done(null, profile);
+	// User.createUser(token, profile._json.login, profile._json.id, done)
       })
     })
   )
