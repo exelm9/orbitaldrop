@@ -16,6 +16,7 @@ angular.module('AirDrop.console', [])
   $.get('/api/user_profiles',function(response){
       var userId = response.id;
       var username = response.login;
+      state.user = response
       socket.emit('createUser', userId, username);
   })
 
@@ -150,7 +151,7 @@ angular.module('AirDrop.console', [])
     $scope.toggleChatBox = function(){
       console.log("eh")
       var status = false
-      var toggle = getElementsByClassName("panel-body panel-footer")
+      var toggle = document.getElementsByClassName("panel-body panel-footer")
       if(status){
         status = false
       }
