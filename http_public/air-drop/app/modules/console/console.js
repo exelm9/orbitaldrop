@@ -138,7 +138,7 @@ angular.module('AirDrop.console', [])
 
 
       var messageObj = {
-        user: state.user
+        user: state.user,
         message : message
       } 
 
@@ -149,9 +149,9 @@ angular.module('AirDrop.console', [])
     }
 
     $scope.toggleChatBox = function(){
-      console.log("eh")
+      console.log(state.user, "inChatBox")
       var status = false
-      var toggle = docugetElementsByClassName("panel-body panel-footer")
+      var toggle = document.getElementsByClassName("panel-body panel-footer")
       if(status){
         status = false
       }
