@@ -2,16 +2,15 @@ const fs = require('fs');
 const Busboy = require('busboy');
 const uuid = require('uuid');
 const path = require('path');
-const socketIO = require('socket.io');
 const util = require('../utils/fileServiceUtil.js');
 const mime = require('mime-types');
 const multiparty = require('multiparty');
 
 var users = require('../models/activeUserModel.js');
 
-module.exports = function(express, socketedServer){
+module.exports = function(express, io){
 	// adds event listeners to the http.Server instance
-	const io = socketIO(socketedServer);
+	
 	var userSockets = {}
 	/*** 
 		The users object will hold the state of our application.  When a new user emits/ends a 

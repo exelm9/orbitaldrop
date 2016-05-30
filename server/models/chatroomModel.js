@@ -1,1 +1,3 @@
-chatroomModel.js
+var chatMessages = []
+
+module.exports = chatMessages

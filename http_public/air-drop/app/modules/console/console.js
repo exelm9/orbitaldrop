@@ -2,7 +2,7 @@
 var socket = io();
 angular.module('AirDrop.console', [])
 
-.controller('ConsoleController', function ($scope) {
+.controller('ConsoleController', function ($scope, state) {
 
   /*
   All logic resides in controller because it's angular best practice
@@ -12,6 +12,7 @@ angular.module('AirDrop.console', [])
     a person or thing that directs or regulates something.
   */
 
+  $scope.chatRoom = []
   $.get('/api/user_profiles',function(response){
       var userId = response.id;
       var username = response.login;
@@ -40,6 +41,12 @@ angular.module('AirDrop.console', [])
 
   })
 
+  socket.on('refreshChat', function(value){
+    console.log(value)
+    $scope.chatRoom = value
+    $scope.$apply();
+  })
+
   socket.on('requestTransfer',function(response){
       var senderUserId = response.senderUserId
       var filename = response.filename
@@ -61,7 +68,6 @@ angular.module('AirDrop.console', [])
             }
         });
       }
-     
       
       
       // socket.emit('transferChoice',{
@@ -113,6 +119,7 @@ angular.module('AirDrop.console', [])
   					// }
   				}
 
+
     $scope.addConnection = function( connection ){
       $scope.users[connection.id] = connection;
     }
@@ -125,4 +132,25 @@ angular.module('AirDrop.console', [])
       //       $el.remove();
       //     },100);
     }
-});
+
+    $scope.sendMessage = function(message){
+
+
+      var messageObj = {
+        user: state.user,
+        message : message
+      } 
+
+      console.log(message)
+
+      // $scope.chatRoom.push(messageObj)
+      socket.emit('sendChatMessage', messageObj)
+    }
+})
+.factory('state', function(){
+  return {
+    chat : [],
+    user: {},
+
+  }
+})
