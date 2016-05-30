@@ -4,9 +4,13 @@ module.exports = function(io){
 	io.on('connection', function(socket){
 		socket.emit('refreshChat', chatroom)
 		socket.on('sendChatMessage', function(message){
-			chatroom.push(message)
+			if(chatroom.length > 30){
+				chatroom.shift()
+				chatroom.push(message)
+			} else {
+				chatroom.push(message)
+			}
 			io.sockets.emit('refreshChat', chatroom)
-			console.log(message)
 		})
 	})
 }
