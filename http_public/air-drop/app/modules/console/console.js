@@ -13,8 +13,8 @@ angular.module('AirDrop.console', [])
   */
 
   $.get('/api/user_profiles',function(response){
-      var userId = response.userId;
-      var username = response.username;
+      var userId = response.id;
+      var username = response.login;
       socket.emit('createUser', userId, username);
   })
 

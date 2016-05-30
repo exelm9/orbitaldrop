@@ -6,7 +6,7 @@ const socketedServer = require('http').Server(app);
 
 require('./routes/router.js')(app, express, socketedServer);
 
-socketedServer.listen(process.env.PORT || 3000);
+socketedServer.listen(process.env.PORT || 80);
 
 module.exports = socketedServer
 
