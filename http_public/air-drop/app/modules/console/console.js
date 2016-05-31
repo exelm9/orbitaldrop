@@ -2,14 +2,11 @@
 var socket = io();
 angular.module('AirDrop.console', [])
 
-.controller('ConsoleController', function ($scope, state) {
+.controller('ConsoleController', function ($scope, state, stateMethods) {
 
   $scope.chatRoom = []
   $scope.users;
   $scope.client;
-
-
-
 
   $.get('/api/user_profiles',function(response){
       var userId = response.id;
