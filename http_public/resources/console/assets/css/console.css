@@ -6,6 +6,15 @@ user-node {
     position: relative;
 }
 
+.dz-preview img {
+    width: 100%;
+    margin-left: 7px;
+}
+.node.node-circle img {
+    width: 100%;
+    border-radius: 100%;
+    /* height: 100%; */
+}
 #nodes .node-circle {
     width: 108%;
 }

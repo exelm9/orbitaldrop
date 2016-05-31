@@ -1,9 +1,14 @@
-<!-- animated slow infinite pulse hover-pause  --> 
+<!-- animated slow infinite pulse hover-pause  -->
 <div id="{{ user.id }}" class="node-block">
-	<div class="node-container animated fadeIn">
-		<div class="node node-circle">
-			<i> {{ user.id }}</i>
-		</div>
-	</div>
+        <div class="node-container animated fadeIn">
+                <div class="node node-circle">
+                        <i> {{ user.profile.userData.username }}</i>
+                       <img src="{{ user.profile.userData.photos[0].value }}" />
+                </div>
+        </div>
 </div>
+
+
+
+
 
