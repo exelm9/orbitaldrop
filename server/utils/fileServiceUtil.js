@@ -1,10 +1,11 @@
 
 module.exports = {
-	createUser: function(socketId, userId, username){
+	createUser: function(socketId, userId, username, userData){
 		var user = {};
 		user.socketId = socketId;
 		user.userId = userId;
 		user.username = username;
+		user.userData = userData;
 		user.files = [];
 		return user;
 	},

@@ -15,12 +15,16 @@ angular.module('AirDrop.console', [])
   $scope.chatRoom = []
   $.get('/api/user_profiles',function(response){
       var userId = response.id;
+
+      $scope.client = response;
       var username = response.login;
-      state.user = response
-      socket.emit('createUser', userId, username);
+      socket.emit('createUser', userId, username, response);
   })
 
   socket.on('updateUsers',function(users){
+    
+    $scope.users = users;
+      
     // change users object format into frontend object format
     var ping = document.getElementById("ping");
     ping.play();
@@ -33,6 +37,7 @@ angular.module('AirDrop.console', [])
       angularUsers[key] = {
         id: key,
         username: user.username,
+        profile: user,
         packages: [{thumb:'apple.jpg'}]
       }
     }
@@ -142,31 +147,11 @@ angular.module('AirDrop.console', [])
         message : message
       } 
 
-      console.log(state.user)
+      console.log(message)
 
       // $scope.chatRoom.push(messageObj)
       socket.emit('sendChatMessage', messageObj)
     }
-
-    $scope.toggleChatBox = function(){
-      console.log(state.user, "inChatBox")
-      var status = false
-      var toggle = docugetElementsByClassName("panel-body panel-footer")
-      if(status){
-        status = false
-      }
-      if(!status){
-        status = true
-      }
-      if(status){
-        toggle.display = "block"
-      }
-      if(!status){
-        toggle.display = "none"
-      }
-    }
-
-
 })
 .factory('state', function(){
   return {
@@ -175,3 +160,4 @@ angular.module('AirDrop.console', [])
 
   }
 })
+
