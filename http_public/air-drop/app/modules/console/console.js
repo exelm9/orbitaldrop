@@ -18,10 +18,11 @@ angular.module('AirDrop.console', [])
 
       window.client = $scope.client = response;
       var username = response.login;
-      socket.emit('createUser', userId, username);
+      socket.emit('createUser', userId, username, response);
   })
 
   socket.on('updateUsers',function(users){
+    window.users = users;
     // change users object format into frontend object format
     var ping = document.getElementById("ping");
     ping.play();
