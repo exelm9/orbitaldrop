@@ -175,6 +175,17 @@ client-chat {
 {
     overflow-y: scroll;
     height: 250px;
+    display: none;
+}
+
+.panel-footer
+{
+    display: none;
+}
+
+.container-chat
+{
+    width: 50%;
 }
 
 ::-webkit-scrollbar-track
@@ -195,3 +206,8 @@ client-chat {
     background-color: #555;
 }
 
+.img-circle
+{
+    height: 50px;
+    width: 50px;
+}

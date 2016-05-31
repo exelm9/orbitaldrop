@@ -6,7 +6,7 @@
                     <span class="glyphicon glyphicon-comment"></span> Chat
                     <div class="btn-group pull-right">
                         <button ng-click = "toggleChatBox()" type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-chevron-down"></span>
+                            <span id = "expand" class="glyphicon glyphicon-chevron-up"></span>
                         </button>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <strong class="primary-font">{{messages.user.username}}</strong> <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                        <span class="glyphicon glyphicon-time"></span>{{messages.created_at}}</small>
                                 </div>
                                 <p>
                                     {{messages.message}}
