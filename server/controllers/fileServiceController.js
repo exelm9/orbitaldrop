@@ -99,7 +99,7 @@ module.exports = function(express, io){
 			/*** build redirect to application homepage if have no files ***/
 
 			var file;
-			console.log(userId, users,'lol')
+			// console.log(userId, users,'user data')
 			if(users[userId].files.length){
 				file = users[userId].files[0]
 			}
