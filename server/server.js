@@ -8,6 +8,7 @@ const             io = socketIO(socketedServer);
 require('./config/config.js');
 require('./routes/router.js')(app, express, io);
 
+console.log(process.env.PORT)
 socketedServer.listen(process.env.PORT || 80);
 
 module.exports = socketedServer
