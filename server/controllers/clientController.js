@@ -1,4 +1,4 @@
-const userList = require('../models/userModel.js')
+//const userList = require('../models/userModel.js')
 const path     = require('path');
 
 module.exports = {

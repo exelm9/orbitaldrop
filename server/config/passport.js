@@ -1,4 +1,4 @@
-const     User = require('../controllers/userController.js')
+//const     User = require('../controllers/userController.js')
 
 module.exports = function(passport){
 
