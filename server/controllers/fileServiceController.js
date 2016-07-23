@@ -111,9 +111,10 @@ module.exports = function(express, io){
 			// set headers so user will download file
 			response.setHeader('Content-disposition', 'attachment; filename=' + filename);
 			response.setHeader('Content-type', mimetype);
+			//response.setHeader('content-length', file.filesize);
 
 			// asychronously chunk file to response object which is responsible for holding the file that the user will consume
-			var filestream = fs.createReadStream(filepath, {bufferSize:file.filesize});
+			var filestream = fs.createReadStream(filepath);
 			filestream.pipe(response);
 
 			// delete file after user has downloaded
