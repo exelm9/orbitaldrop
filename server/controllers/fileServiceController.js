@@ -73,7 +73,7 @@ module.exports = function(express, io){
 				var filename = filename;
 
 				// add uniqueId and filename to user receiving download
-				users[recieverUserId].files[0] = util.createFile(uniqueId, filename);
+				users[recieverUserId].files[0] = util.createFile(uniqueId, filename, request.headers['content-length']);
 				
 				// emit a download prompt to the user that is receiving the upload
 				userSockets[recieverUserId].emit('requestTransfer', {filename:filename, senderUserId: userId});
@@ -113,7 +113,7 @@ module.exports = function(express, io){
 			response.setHeader('Content-type', mimetype);
 
 			// asychronously chunk file to response object which is responsible for holding the file that the user will consume
-			var filestream = fs.createReadStream(filepath);
+			var filestream = fs.createReadStream(filepath, {bufferSize:file.filesize});
 			filestream.pipe(response);
 
 			// delete file after user has downloaded
@@ -134,7 +134,7 @@ module.exports = function(express, io){
 			}
 
 			var file;
-			console.log(users[userId], 'what')
+
 			if(users[userId].files.length){
 				file = users[userId].files[0]
 			}

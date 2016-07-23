@@ -9,10 +9,11 @@ module.exports = {
 		user.files = [];
 		return user;
 	},
-	createFile: function(fileId, filename){
+	createFile: function(fileId, filename, filesize){
 		var file = {};
 		file.fileId = fileId;
 		file.filename = filename;
+		file.filesize = filesize;
 		return file;
 	},
 	findUserBySocketId: function(socketId, users){
